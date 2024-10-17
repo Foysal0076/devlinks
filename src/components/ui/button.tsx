@@ -16,13 +16,13 @@ const ButtonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-primary-500 text-white hover:bg-primary-600 focus:ring-4 focus:ring-primary-100 text-neutral-0 focus:outline-primary-200 disabled:active:transform-none active:scale-[.95] disabled:text-neutral-200 disabled:bg-primary-100 disabled:cursor-not-allowed',
+          'bg-primary-500 text-white hover:bg-primary-600 focus:ring-4 focus:ring-primary-100 text-neutral-0 focus:outline-primary-200 disabled:active:transform-none active:scale-[.95] disabled:text-neutral-200 disabled:bg-primary-100 disabled:cursor-not-allowed text-neutral-0 dark:text-neutral-900',
         secondary:
           'bg-none text-neutral-900 hover:bg-primary-50 focus:ring-primary-100 border-2 border-primary-500 text-primary-500 focus:ring-4 focus:ring-primary-100 disabled:active:transform-none active:scale-[.95] disabled:cursor-not-allowed disabled:text-neutral-200 disabled:border-neutral-50 disabled:hover:bg-neutral-0 dark:text-primary-200 dark:border-primary-200 dark:hover:bg-surface-200 dark:disabled:border-neutral-200 dark:disabled:text-neutral-200',
         danger:
-          'bg-red-500 hover:bg-red-600 text-neutral-0 focus:ring-4 focus:ring-red-100 disabled:active:transform-none active:scale-[.95] disabled:text-neutral-200 disabled:bg-neutral-50 disabled:cursor-not-allowed',
+          'bg-red-500 hover:bg-red-600 text-neutral-0 focus:ring-4 focus:ring-red-100 disabled:active:transform-none active:scale-[.95] disabled:text-neutral-200 disabled:bg-neutral-50 disabled:cursor-not-allowed text-neutral-0 dark:text-neutral-900',
         success:
-          'bg-green-500 hover:bg-green-600 text-neutral-0 focus:ring-4 focus:ring-green-100 disabled:active:transform-none active:scale-[.95] disabled:text-neutral-200 disabled:bg-neutral-50 disabled:cursor-not-allowed',
+          'bg-green-500 hover:bg-green-600 text-neutral-0 focus:ring-4 focus:ring-green-100 disabled:active:transform-none active:scale-[.95] disabled:text-neutral-200 disabled:bg-neutral-50 disabled:cursor-not-allowed text-neutral-0 dark:text-neutral-900',
       },
       size: {
         xs: 'h-[1.75rem] text-xs px-4',

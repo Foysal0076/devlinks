@@ -23,7 +23,12 @@ const LoginForm = () => {
           {...register('email')}
           error={errors?.email ? errors.email.message : ''}
           startAdornment={{
-            adornment: <Envelope size={20} className='text-neutral-800' />,
+            adornment: (
+              <Envelope
+                size={20}
+                className='text-neutral-800 dark:text-neutral-400'
+              />
+            ),
             className: '',
           }}
         />
@@ -34,7 +39,12 @@ const LoginForm = () => {
           {...register('password')}
           error={errors?.password ? errors.password.message : ''}
           startAdornment={{
-            adornment: <Key size={20} className='text-neutral-800' />,
+            adornment: (
+              <Key
+                size={20}
+                className='text-neutral-800 dark:text-neutral-400'
+              />
+            ),
             className: '',
           }}
         />
