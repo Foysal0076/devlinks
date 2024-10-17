@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="relative flex h-8 w-8 items-center justify-center rounded-full border-neutral-100 bg-surface-300 text-base font-bold"
+  >
+    <span
+      class="text-sm font-bold md:text-base"
+    >
+      JD
+    </span>
+  </div>
+</DocumentFragment>
+`;
