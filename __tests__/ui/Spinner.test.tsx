@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 
-import Spinner from '@/ui/spinner'
+import Spinner from '@/components/ui/spinner'
 
 describe('Spinner component', () => {
   test('renders without crashing', () => {

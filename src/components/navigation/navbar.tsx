@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
-import { NavigationDrawerMenu } from '@/components/navigation/navigation-drawer'
-import ThemeSwitcher from '@/components/theme-switcher'
+import NavbarAuthMenu from '@/components/auth/navbar-auth-menu'
 
 export const Navbar = () => {
   return (
@@ -17,10 +16,10 @@ export const Navbar = () => {
           </Link>
         </div>
         <div className='flex gap-4'>
-          <ThemeSwitcher />
-          <div className='flex md:hidden'>
+          <NavbarAuthMenu />
+          {/* <div className='flex md:hidden'>
             <NavigationDrawerMenu />
-          </div>
+          </div> */}
         </div>
       </nav>
     </header>

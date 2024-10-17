@@ -1,7 +1,9 @@
 import '@/styles/globals.css'
 
 import { Inter, Rubik } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 
+import { AuthProvider } from '@/components/auth/auth-provider'
 import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navigation'
 import NextThemeProvider from '@/components/next-theme-provider'
@@ -40,15 +42,18 @@ export default function RootLayout({
         href='/assets/favicons/favicon.ico'
       />
       <body>
-        <NextThemeProvider>
-          <div className='flex min-h-screen flex-col justify-between bg-surface-50 pt-[3.75rem] md:pt-[4.5rem]'>
-            <div>
-              <Navbar />
-              <main>{children}</main>
+        <AuthProvider>
+          <NextThemeProvider>
+            <div className='flex min-h-screen flex-col justify-between bg-neutral-10 pt-[3.75rem] dark:bg-surface-50 md:pt-[4.5rem]'>
+              <div>
+                <Navbar />
+                <main>{children}</main>
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </NextThemeProvider>
+            <Toaster position='bottom-center' reverseOrder={false} />
+          </NextThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   )
