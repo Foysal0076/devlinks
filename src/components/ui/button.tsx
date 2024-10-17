@@ -57,7 +57,9 @@ const Button = ({
       disabled={loading}
       {...buttonProps}>
       {loading && (
-        <div className='absolute inset-0 flex items-center justify-center'>
+        <div
+          className='absolute inset-0 flex items-center justify-center'
+          data-testid='spinner'>
           <Spinner />
         </div>
       )}
