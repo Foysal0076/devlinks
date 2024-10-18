@@ -13,7 +13,7 @@ import { Controller, useFieldArray } from 'react-hook-form'
 import Button from '@/components/ui/button'
 import { Input } from '@/components/ui/Input'
 import Select from '@/components/ui/select'
-import { PlatformOptionType } from '@/types/platform.types'
+import { PlatformOptionType } from '@/types/link.types'
 
 const platformOptions: PlatformOptionType[] = [
   {
@@ -61,7 +61,7 @@ const LinksInputArray = ({
 }: LinkInputArrayProps) => {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'platformLinks',
+    name: 'links',
   })
 
   const addLink = () => {
@@ -100,7 +100,7 @@ const LinksInputArray = ({
               </div>
               <div className='flex flex-col gap-6'>
                 <Controller
-                  name={`platformLinks[${index}].name`}
+                  name={`links[${index}].name`}
                   control={control}
                   render={({ field: { value, onChange } }) => (
                     <Select
@@ -113,12 +113,12 @@ const LinksInputArray = ({
                   )}
                 />
                 <Input
-                  {...register(`platformLinks[${index}].url`)}
+                  {...register(`links[${index}].url`)}
                   className='flex-grow'
                   label='Link'
                   labelClassName='mb-0.5 block'
                   placeholder='https://github.com/my-profile'
-                  error={errors?.platformLinks?.[index]?.url?.message}
+                  error={errors?.links?.[index]?.url?.message}
                 />
               </div>
             </div>

@@ -8,8 +8,8 @@ export const platformSchema = z.object({
     .url({ message: 'Invalid URL' }),
 })
 
-export const platformLinksSchema = z.object({
-  platformLinks: z.array(platformSchema),
+export const linksSchema = z.object({
+  links: z.array(platformSchema),
 })
 
-export type PlatFormInput = z.infer<typeof platformLinksSchema>
+export type PlatFormInput = z.infer<typeof linksSchema>

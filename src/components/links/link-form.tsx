@@ -1,67 +1,84 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
+import toast from 'react-hot-toast'
 
 import LinksInputArray from '@/components/links/link-input-fields-array'
 import Button from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import {
+  useCreateLinksMutation,
+  useFetchUserLinksQuery,
+  useUpdateLinksMutation,
+} from '@/redux/queries/link.queries'
+import {
+  linksSchema,
   PlatFormInput,
-  platformLinksSchema,
 } from '@/shared/validators/platform-link.schema'
+import { PutLinksBody } from '@/types'
 
-const defaultData = {
-  platformLinks: [{ name: 'Github', url: 'https:github.com/foysal0076' }],
-}
+const LinkForm = () => {
+  const [reset, setReset] = useState<PutLinksBody>({ links: [], id: '' })
 
-type Props = {
-  initialData?: PlatFormInput
-}
+  const [createLinks, { isLoading, isError, isSuccess }] =
+    useCreateLinksMutation()
 
-const LinkForm = ({ initialData = defaultData }: Props) => {
-  const [reset, setReset] = useState(initialData || {})
+  const [updateLinks, { isLoading: isUpdating, isError: isUpdateError }] =
+    useUpdateLinksMutation()
 
-  const onSubmit: SubmitHandler<PlatFormInput> = (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<PlatFormInput> = async (data) => {
+    try {
+      if (reset?.id) {
+        await updateLinks({ id: reset.id, links: data.links })
+        toast.success('Links updated successfully')
+        return
+      }
+      await createLinks({ links: data.links })
+      toast.success('Links created successfully')
+    } catch (error) {
+      toast.error('An error occurred')
+    }
   }
 
+  const {
+    data,
+    isLoading: isFetching,
+    isSuccess: isLinksFetched,
+  } = useFetchUserLinksQuery(null)
+
+  useEffect(() => {
+    if (isLinksFetched && !isFetching && data) {
+      setReset({ links: data?.links, id: data?.id })
+    }
+  }, [data, isFetching, isLinksFetched])
+
   return (
-    <div>
-      <div className='p-5 md:p-6'>
-        <h1 className='h4 mb-2 font-bold'>Customize your links</h1>
-        <p className=''>
-          Add/edit/remove links below and then share all your profiles with the
-          world!
-        </p>
-      </div>
-      <Form<PlatFormInput>
-        validationSchema={platformLinksSchema}
-        resetValues={reset}
-        onSubmit={onSubmit}
-        useFormProps={{
-          defaultValues: initialData,
-        }}
-        className='flex h-full max-h-[70vh] min-h-[70vh] flex-col overflow-y-auto'>
-        {({ register, control, formState: { errors } }) => (
-          <>
-            <div className='flex grow'>
-              <div className='flex w-full flex-col justify-between gap-6'>
-                <LinksInputArray
-                  control={control}
-                  errors={errors}
-                  register={register}
-                />
-                <div className='sticky bottom-0 flex rounded-bl-xl rounded-br-xl bg-neutral-0 p-5 dark:bg-surface-100 md:p-6'>
-                  <Button className='ml-auto max-md:mx-auto max-md:w-full'>
-                    Save
-                  </Button>
-                </div>
+    <Form<PlatFormInput>
+      validationSchema={linksSchema}
+      resetValues={reset}
+      onSubmit={onSubmit}
+      className='flex h-full max-h-[70vh] min-h-[70vh] flex-col overflow-y-auto'>
+      {({ register, control, formState: { errors } }) => (
+        <>
+          <div className='flex grow'>
+            <div className='flex w-full flex-col justify-between gap-6'>
+              <LinksInputArray
+                control={control}
+                errors={errors}
+                register={register}
+              />
+              <div className='sticky bottom-0 flex rounded-bl-xl rounded-br-xl bg-neutral-0 p-5 dark:bg-surface-100 md:p-6'>
+                <Button
+                  loading={isLoading || isUpdating}
+                  className='ml-auto max-md:mx-auto max-md:w-full'>
+                  Save
+                </Button>
               </div>
             </div>
-          </>
-        )}
-      </Form>
-    </div>
+          </div>
+        </>
+      )}
+    </Form>
   )
 }
 
