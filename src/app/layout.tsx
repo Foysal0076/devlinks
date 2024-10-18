@@ -7,6 +7,7 @@ import { AuthProvider } from '@/components/auth/auth-provider'
 import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navigation'
 import NextThemeProvider from '@/components/next-theme-provider'
+import { ReduxProvider } from '@/redux/redux-provider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -44,14 +45,16 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <NextThemeProvider>
-            <div className='flex min-h-screen flex-col justify-between bg-neutral-10 pt-[3.75rem] dark:bg-surface-50 md:pt-0'>
-              <div>
-                <Navbar />
-                <main>{children}</main>
+            <ReduxProvider>
+              <div className='flex min-h-screen flex-col justify-between bg-neutral-10 pt-[3.75rem] dark:bg-surface-50 md:pt-0'>
+                <div>
+                  <Navbar />
+                  <main>{children}</main>
+                </div>
+                <Footer />
               </div>
-              <Footer />
-            </div>
-            <Toaster position='bottom-center' reverseOrder={false} />
+              <Toaster position='bottom-center' reverseOrder={false} />
+            </ReduxProvider>
           </NextThemeProvider>
         </AuthProvider>
       </body>
