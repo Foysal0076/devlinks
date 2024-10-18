@@ -4,6 +4,7 @@ import { cn } from '@/shared/utils'
 
 type TextFieldParams = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string
+  labelClassName?: string
   helperText?: string
   layout?: 'horizontal' | 'vertical'
   error?: string
@@ -30,6 +31,7 @@ export const Input = forwardRef<HTMLInputElement, TextFieldParams>(
       error,
       layout = 'vertical',
       className = '',
+      labelClassName = '',
       helperText,
       startAdornment,
       endAdornment,
@@ -45,14 +47,18 @@ export const Input = forwardRef<HTMLInputElement, TextFieldParams>(
         {label && (
           <label
             htmlFor={inputParams.id as string}
-            className={cn('text-sm font-medium', {
-              'text-neutral-600 group-focus-within:text-primary-500 dark:group-focus-within:text-primary-300':
-                !error,
-              'text-red-500 group-focus-within:text-red-500': error,
-              'after:ml-0.5 after:mr-1 after:text-red-500 after:content-["*"]':
-                inputParams.required,
-              'mt-2': layout === 'horizontal',
-            })}>
+            className={cn(
+              'text-xs font-medium',
+              {
+                'text-neutral-600 group-focus-within:text-primary-500 dark:group-focus-within:text-primary-300':
+                  !error,
+                'text-red-500 group-focus-within:text-red-500': error,
+                'after:ml-0.5 after:mr-1 after:text-red-500 after:content-["*"]':
+                  inputParams.required,
+                'mt-2': layout === 'horizontal',
+              },
+              labelClassName
+            )}>
             {label}
             {layout === 'horizontal' && <span>:</span>}
           </label>
@@ -84,7 +90,7 @@ export const Input = forwardRef<HTMLInputElement, TextFieldParams>(
                 'absolute -bottom-0 left-0',
                 helperText ? 'translate-y-[80%]' : 'translate-y-[90%]'
               )}>
-              <span className='-mt-1 text-xs text-red-500 dark:text-red-500'>
+              <span className='text-xs text-red-500 dark:text-red-500'>
                 {error}
               </span>
             </div>

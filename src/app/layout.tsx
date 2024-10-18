@@ -4,7 +4,6 @@ import { Inter, Rubik } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
 import { AuthProvider } from '@/components/auth/auth-provider'
-import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navigation'
 import NextThemeProvider from '@/components/next-theme-provider'
 import { ReduxProvider } from '@/redux/redux-provider'
@@ -51,7 +50,7 @@ export default function RootLayout({
                   <Navbar />
                   <main>{children}</main>
                 </div>
-                <Footer />
+                {/* <Footer /> */}
               </div>
               <Toaster position='bottom-center' reverseOrder={false} />
             </ReduxProvider>
