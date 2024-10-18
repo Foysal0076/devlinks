@@ -1,5 +1,7 @@
+import { Links } from '@/components/links'
+
 const HomePage = async () => {
-  return <div className='container'></div>
+  return <Links />
 }
 
 export default HomePage

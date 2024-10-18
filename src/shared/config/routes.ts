@@ -4,5 +4,5 @@ export const routes = {
   home: '/',
   links: '/',
   profileDetails: '/profile',
-  previewLinks: '/preview-links',
+  previewProfile: (id: string | number) => `/profile/${id}`,
 }
