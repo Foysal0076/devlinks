@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { apiRoutes } from '@/shared/config/api-routes'
+import { routes } from '@/shared/config/routes'
 import { registrationFormSchema } from '@/shared/validators/auth.schema'
 
 type FormValueTypes = {
@@ -42,7 +43,7 @@ export const useRegistrationForm = () => {
         await signIn('credentials', {
           email: data.email,
           password: data.password,
-          callbackUrl: '/',
+          callbackUrl: routes.home,
         })
         reset()
       } else {

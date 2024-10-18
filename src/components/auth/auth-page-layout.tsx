@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 
 import { authOptions } from '@/services/auth.service'
+import { routes } from '@/shared/config/routes'
 
 type Props = {
   children: React.ReactNode
@@ -11,7 +12,7 @@ type Props = {
 const AuthPageLayout = async ({ children }: Props) => {
   const session = await getServerSession(authOptions)
   if (session && session.accessToken) {
-    return redirect('/')
+    return redirect(routes.home)
   }
 
   return (

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
+import { routes } from '@/shared/config/routes'
 import { loginFormSchema } from '@/shared/validators/auth.schema'
 
 type FormValueTypes = {
@@ -34,10 +35,8 @@ export const useLoginForm = () => {
         redirect: false,
       })
       if (res?.status === 200) {
-        router.push('/')
-        return
-      }
-      if (res?.status === 401) {
+        router.push(routes.home)
+      } else if (res?.status === 401) {
         throw new Error('Invalid credentials')
       } else {
         throw new Error(res?.error || 'Something went wrong')

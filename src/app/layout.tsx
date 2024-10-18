@@ -44,7 +44,7 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <NextThemeProvider>
-            <div className='flex min-h-screen flex-col justify-between bg-neutral-10 pt-[3.75rem] dark:bg-surface-50 md:pt-[4.5rem]'>
+            <div className='flex min-h-screen flex-col justify-between bg-neutral-10 pt-[3.75rem] dark:bg-surface-50 md:pt-0'>
               <div>
                 <Navbar />
                 <main>{children}</main>

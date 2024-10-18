@@ -1,5 +1,5 @@
 const HomePage = async () => {
-  return <div className='container'>Welcome to Devlinks</div>
+  return <div className='container'></div>
 }
 
 export default HomePage
