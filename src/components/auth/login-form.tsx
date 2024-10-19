@@ -48,7 +48,7 @@ const LoginForm = () => {
             className: '',
           }}
         />
-        <Button type='submit' className='mt-2 w-full' loading={loading}>
+        <Button type='submit' className='mt-2 w-full' loading={true}>
           Login
         </Button>
         <div className='flex flex-col items-center justify-center gap-1'>

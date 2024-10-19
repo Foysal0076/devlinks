@@ -1,18 +1,11 @@
+import { cn } from '@/shared/utils'
+
 type Props = React.SVGProps<SVGSVGElement>
 
 const Spinner = ({ className, ...props }: Props) => {
-  //check if h and w is passed in className, if not add h-5 and w-5
-  const hasHeightAndWidth =
-    className?.includes('h-') && className?.includes('w-')
-  // contains text- and last 2 digit is number
-  const hasColorClass = className?.includes('text-') && /\d{2}$/.test(className)
-  const classNames = `${className ?? ''} ${hasColorClass ? '' : 'text-primary-500'} -ml-1 mr-3 animate-spin ${
-    !hasHeightAndWidth ? 'h-6 w-6' : ''
-  }`
-
   return (
     <svg
-      className={classNames}
+      className={cn('-ml-1 h-6 w-6 animate-spin text-primary-500', className)}
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'
