@@ -1,2 +1,8 @@
 export { ToggleDarkIcon } from './toggle-dark-icon'
 export { ToggleLightIcon } from './toggle-light-icon'
+export * from './github'
+export * from './linkedin'
+export * from './youtube'
+export * from './facebook'
+export * from './gitlab'
+export * from './x'

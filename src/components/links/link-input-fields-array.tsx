@@ -1,50 +1,53 @@
 'use client'
-import {
-  FacebookLogo,
-  GithubLogo,
-  GitlabLogo,
-  LinkedinLogo,
-  Plus,
-  TwitterLogo,
-  YoutubeLogo,
-} from '@phosphor-icons/react'
-import { Controller, useFieldArray } from 'react-hook-form'
+import { Link as LinkIcon, Plus } from '@phosphor-icons/react'
+import { useEffect } from 'react'
+import { Controller, useFieldArray, useWatch } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 
+import {
+  FacebookIcon,
+  GithubIcon,
+  GitlabIcon,
+  LinkedinIcon,
+  XIcon,
+  YoutubeIcon,
+} from '@/components/icons'
 import Button from '@/components/ui/button'
 import { Input } from '@/components/ui/Input'
 import Select from '@/components/ui/select'
-import { PlatformOptionType } from '@/types/link.types'
+import { updateUserInfo } from '@/redux/slice/user-links-slice'
+import { Link, PlatformOptionType } from '@/types/link.types'
 
 const platformOptions: PlatformOptionType[] = [
   {
     label: 'Github',
     value: 'Github',
-    icon: <GithubLogo weight='bold' size={18} />,
+    icon: <GithubIcon className='h-4 w-4' />,
   },
   {
     label: 'LinkedIn',
     value: 'LinkedIn',
-    icon: <LinkedinLogo weight='bold' size={18} />,
+    icon: <LinkedinIcon className='h-4 w-4' />,
   },
   {
     label: 'YouTube',
     value: 'YouTube',
-    icon: <YoutubeLogo weight='bold' size={18} />,
+    icon: <YoutubeIcon className='h-4 w-4' />,
   },
   {
     label: 'Facebook',
     value: 'Facebook',
-    icon: <FacebookLogo weight='bold' size={18} />,
+    icon: <FacebookIcon className='h-4 w-4' />,
   },
   {
     label: 'GitLab',
     value: 'GitLab',
-    icon: <GitlabLogo weight='bold' size={18} />,
+    icon: <GitlabIcon className='h-4 w-4' />,
   },
   {
-    label: 'Twitter',
-    value: 'Twitter',
-    icon: <TwitterLogo weight='bold' size={18} />,
+    label: 'X',
+    value: 'X',
+    icon: <XIcon className='h-4 w-4' />,
   },
 ]
 
@@ -64,6 +67,10 @@ const LinksInputArray = ({
     name: 'links',
   })
 
+  const links = useWatch({ control, name: 'links' }) as Link[]
+
+  const dispatch = useDispatch()
+
   const addLink = () => {
     append({ name: 'Github', url: '' })
   }
@@ -71,6 +78,10 @@ const LinksInputArray = ({
   const removeLink = (index: number) => {
     remove(index)
   }
+
+  useEffect(() => {
+    dispatch(updateUserInfo({ key: 'links', value: links }))
+  }, [links, dispatch])
 
   return (
     <div className=''>
@@ -108,7 +119,9 @@ const LinksInputArray = ({
                       labelClassName='mb-1.5 block'
                       options={platformOptions}
                       value={value}
-                      onChange={(selectedOption) => onChange(selectedOption)}
+                      onChange={(selectedOption) => {
+                        return onChange(selectedOption)
+                      }}
                     />
                   )}
                 />
@@ -118,6 +131,14 @@ const LinksInputArray = ({
                   label='Link'
                   labelClassName='mb-0.5 block'
                   placeholder='https://github.com/my-profile'
+                  startAdornment={{
+                    adornment: (
+                      <LinkIcon
+                        className='ml-1 text-neutral-600'
+                        weight='bold'
+                      />
+                    ),
+                  }}
                   error={errors?.links?.[index]?.url?.message}
                 />
               </div>

@@ -68,7 +68,7 @@ export const Input = forwardRef<HTMLInputElement, TextFieldParams>(
             ref={ref}
             {...inputParams}
             className={cn(
-              'rounded-lg border-none px-4 text-neutral-600 outline-none ring-1 placeholder:text-neutral-100 focus:placeholder:text-primary-100 disabled:bg-neutral-30 disabled:text-neutral-100 dark:bg-surface-100 dark:text-neutral-400 dark:disabled:bg-neutral-400',
+              'rounded-lg border-none px-4 text-neutral-600 outline-none ring-1 placeholder:text-neutral-50 disabled:bg-neutral-30 disabled:text-neutral-100 dark:bg-surface-100 dark:text-neutral-600 dark:disabled:bg-neutral-400',
               {
                 'ring-neutral-50 focus:shadow-[0_0_10px_#c9bfff] focus:ring-primary-300 dark:focus:ring-primary-300':
                   !error,

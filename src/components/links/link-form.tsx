@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 
 import LinksInputArray from '@/components/links/link-input-fields-array'
 import Button from '@/components/ui/button'
@@ -11,6 +12,7 @@ import {
   useFetchUserLinksQuery,
   useUpdateLinksMutation,
 } from '@/redux/queries/link.queries'
+import { updateUserInfo } from '@/redux/slice/user-links-slice'
 import {
   linksSchema,
   PlatFormInput,
@@ -19,6 +21,7 @@ import { PutLinksBody } from '@/types'
 
 const LinkForm = () => {
   const [reset, setReset] = useState<PutLinksBody>({ links: [], id: '' })
+  const dispatch = useDispatch()
 
   const [createLinks, { isLoading, isError, isSuccess }] =
     useCreateLinksMutation()
@@ -49,6 +52,7 @@ const LinkForm = () => {
   useEffect(() => {
     if (isLinksFetched && !isFetching && data) {
       setReset({ links: data?.links, id: data?.id })
+      dispatch(updateUserInfo({ key: 'links', value: data?.links }))
     }
   }, [data, isFetching, isLinksFetched])
 
