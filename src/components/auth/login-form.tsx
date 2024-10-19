@@ -9,6 +9,7 @@ import { routes } from '@/shared/config/routes'
 
 const LoginForm = () => {
   const { handleSubmit, onsubmit, errors, register, loading } = useLoginForm()
+  console.log(errors)
   return (
     <div className='mx-auto w-full max-w-lg rounded-xl bg-surface-0 p-6 shadow-sm dark:bg-surface-100 md:p-8'>
       <h2 className='h4 mb-2 text-center'>Login to Your Account</h2>
@@ -48,7 +49,7 @@ const LoginForm = () => {
             className: '',
           }}
         />
-        <Button type='submit' className='mt-2 w-full' loading={true}>
+        <Button type='submit' className='mt-2 w-full' loading={loading}>
           Login
         </Button>
         <div className='flex flex-col items-center justify-center gap-1'>

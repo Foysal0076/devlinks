@@ -1,4 +1,4 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -24,7 +24,7 @@ export const useRegistrationForm = () => {
     register,
     formState: { errors },
   } = useForm<FormValueTypes>({
-    resolver: yupResolver(registrationFormSchema),
+    resolver: zodResolver(registrationFormSchema),
     mode: 'all',
   })
 
