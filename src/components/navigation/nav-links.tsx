@@ -9,13 +9,14 @@ import { cn } from '@/shared/utils'
 
 const NavLinks = () => {
   const currentPath = usePathname()
-  const { status } = useSession()
+  const { data, status } = useSession()
   const { id } = useParams()
 
   const isLogged = status === 'authenticated'
-  if (!isLogged) return null
+  const isLoading = status === 'loading'
+  if (!isLogged || isLoading) return null
 
-  const previewLink = routes.previewProfile(id as unknown as string)
+  const previewLink = routes.previewProfile(data?.user?.id as unknown as string)
 
   const isOnLinksPage = currentPath === routes.links
   const isOnProfileDetailsPage = currentPath === routes.profileDetails

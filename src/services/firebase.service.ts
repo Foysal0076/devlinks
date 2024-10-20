@@ -15,6 +15,7 @@ import { db, storage } from '@/shared/config/firebase.config'
 import {
   FirebaseUserLinksPostFormData,
   FirebaseUserLinksPutFormData,
+  UserInfoAndLinks,
   UserInformationPutFormData,
 } from '@/types'
 
@@ -102,8 +103,11 @@ export const updateUserLinks = async (data: FirebaseUserLinksPutFormData) => {
   }
 }
 
-export const getUserLinks = async (userId: string) => {
+export const getUserInfoAndLinks = async (
+  userId: string
+): Promise<UserInfoAndLinks> => {
   try {
+    let response: UserInfoAndLinks = {} as UserInfoAndLinks
     const linksRef = collection(db, LINKS_DOC)
 
     const _query = query(linksRef, where('userId', '==', userId))
@@ -115,19 +119,17 @@ export const getUserLinks = async (userId: string) => {
     data.forEach((doc) => {
       result.push({ id: doc.id, ...doc.data() })
     })
-    if (result.length) {
-      const links = result[0]
+    const userInformationData = await getUserById(userId)
 
-      const userInformationData = await getUserById(userId)
-      if (!userInformationData) {
-        throw new Error('No such document!')
-      }
-      const userInfo = userInformationData[0]
-      delete userInfo.id
-      return { ...userInfo, ...links }
-    } else {
-      throw new Error('No such document!')
+    const userInfo = userInformationData[0]
+    delete userInfo.id
+    response = {
+      ...userInfo,
+      links: result.length ? JSON.parse(result[0].links) : [],
+      id: result.length ? result[0].id : '',
     }
+
+    return response
   } catch (error) {
     console.error('Error fetching user links: ', error)
     throw error

@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/services/auth.service'
 import {
   createUserLinks,
-  getUserLinks,
+  getUserInfoAndLinks,
   updateUserLinks,
 } from '@/services/firebase.service'
 import {
@@ -51,8 +51,8 @@ export async function GET(request: Request) {
 
   try {
     const userId = session.user.id as unknown as string
-    const data = await getUserLinks(userId)
-    return NextResponse.json({ ...data, links: JSON.parse(data.links) })
+    const data = await getUserInfoAndLinks(userId)
+    return NextResponse.json({ ...data, links: data.links })
   } catch (error) {
     return NextResponse.json(
       { message: 'Something went wrong' },

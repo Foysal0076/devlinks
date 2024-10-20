@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/services/auth.service'
 import {
   deleteUserLinks,
-  getUserLinksByDocId,
+  getUserInfoAndLinks,
 } from '@/services/firebase.service'
 
 export async function GET(
@@ -12,11 +12,13 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const docId = params.id
-    const data = await getUserLinksByDocId(docId)
-    return NextResponse.json({ ...data, links: JSON.parse(data.links) })
+    const userId = params.id
+    const data = await getUserInfoAndLinks(userId)
+    return NextResponse.json(data)
   } catch (error) {
-    console.log(error)
+    if (error instanceof Error && error.message === 'Not Found') {
+      return NextResponse.json({ message: 'Not Found' }, { status: 404 })
+    }
     return NextResponse.json({ message: 'Fetch Failed' }, { status: 500 })
   }
 }

@@ -15,6 +15,14 @@ export type UserLinks = {
   id: string
   links: Link[]
 }
+export type UserInfoAndLinks = {
+  id: string // link id
+  firstName: string
+  lastName?: string
+  avatar?: string
+  email: string
+  links: Link[]
+}
 
 // redux query data type
 export type PostLinksBody = {
