@@ -16,7 +16,7 @@ const AuthPageLayout = async ({ children }: Props) => {
   }
 
   return (
-    <div className='container flex min-h-[85vh] max-w-7xl flex-col items-center justify-center gap-8'>
+    <div className='container flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8'>
       <div className='flex items-center justify-center gap-4'>
         <Image
           src='/assets/images/icons/devlinks-icon.svg'
