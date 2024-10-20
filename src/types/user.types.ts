@@ -5,3 +5,7 @@ export type UserInformation = {
   email: string
   avatar: string
 }
+
+export type UserInformationPutFormData = Partial<
+  Omit<UserInformation, 'id' | 'email'>
+>

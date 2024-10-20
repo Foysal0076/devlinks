@@ -1,6 +1,6 @@
 import { apiSlice } from '@/redux/slice/apiSlice'
 import { apiRoutes } from '@/shared/config/api-routes'
-import { UserInformation } from '@/types'
+import { UserInformation, UserInformationPutFormData } from '@/types'
 
 export const userQueries = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,7 +12,19 @@ export const userQueries = apiSlice.injectEndpoints({
       }),
       providesTags: ['User'],
     }),
+    updateUserProfile: builder.mutation<
+      UserInformation,
+      UserInformationPutFormData
+    >({
+      query: (body) => ({
+        url: apiRoutes.userInformation,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['User'],
+    }),
   }),
 })
 
-export const { useFetchUserInformationQuery } = userQueries
+export const { useFetchUserInformationQuery, useUpdateUserProfileMutation } =
+  userQueries

@@ -15,6 +15,7 @@ import { db, storage } from '@/shared/config/firebase.config'
 import {
   FirebaseUserLinksPostFormData,
   FirebaseUserLinksPutFormData,
+  UserInformationPutFormData,
 } from '@/types'
 
 const LINKS_DOC = 'userlinks'
@@ -29,6 +30,27 @@ export const getUserById = async (id: string) => {
     result.push(doc.data())
   })
   return result
+}
+
+export const updateUserProfile = async (
+  data: UserInformationPutFormData & { id: string }
+) => {
+  try {
+    const { id, ...rest } = data
+    const docRef = doc(db, USER_DOC, id)
+
+    await setDoc(docRef, { ...rest }, { merge: true })
+
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      return docSnap.data()
+    } else {
+      throw new Error('No such document!')
+    }
+  } catch (error) {
+    console.error('Error updating document: ', error)
+    throw error
+  }
 }
 
 export const uploadFile = async (file: File | Blob, path: string) => {
