@@ -6,6 +6,4 @@ export type UserInformation = {
   avatar: string
 }
 
-export type UserInformationPutFormData = Partial<
-  Omit<UserInformation, 'id' | 'email'>
->
+export type UserInformationPutFormData = Partial<Omit<UserInformation, 'id'>>

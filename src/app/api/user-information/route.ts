@@ -37,7 +37,7 @@ export async function PUT(request: Request) {
 
   try {
     const userId = session.user.id as unknown as string
-    const { firstName, lastName, avatar }: UserInformationPutFormData =
+    const { firstName, lastName, avatar, email }: UserInformationPutFormData =
       await request.json()
 
     if (!firstName && !lastName && !avatar) {
@@ -46,12 +46,14 @@ export async function PUT(request: Request) {
         { status: 400 }
       )
     }
+    ;``
 
     const formData = {
       id: userId,
       ...(firstName && { firstName }),
       ...(lastName && { lastName }),
       ...(avatar && { avatar }),
+      ...(email && { email }),
     }
 
     const data = await updateUserProfile(formData)

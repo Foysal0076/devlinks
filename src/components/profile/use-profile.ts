@@ -1,11 +1,21 @@
+'use client'
+
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 
 import {
   useFetchUserInformationQuery,
   useUpdateUserProfileMutation,
 } from '@/redux/queries/user.queries'
+import { updateUserInfo } from '@/redux/slice/user-links-slice'
 import { apiRoutes } from '@/shared/config/api-routes'
+import {
+  UserInformationUpdateSchema,
+  userInformationUpdateSchema,
+} from '@/shared/validators/profile.schema'
 
 export const useProfilePicture = () => {
   const [selectedImageFileUrl, setSelectedImageFileUrl] = useState<
@@ -104,5 +114,74 @@ export const useProfilePicture = () => {
     hasUpdateProfileError,
     isUpdatingProfile: uploading || isUpdatingProfile,
     isLoadingProfilePicture: isLoading,
+  }
+}
+
+export const useProfileEditForm = () => {
+  const dispatch = useDispatch()
+  const {
+    data,
+    isFetching,
+    isLoading: isLoadingUserInfo,
+  } = useFetchUserInformationQuery(null)
+
+  const [
+    updateUserInformation,
+    { isError: hasUpdateUserInformationError, isLoading: isUpdatingProfile },
+  ] = useUpdateUserProfileMutation()
+
+  const {
+    handleSubmit,
+    reset,
+    register,
+    watch,
+    formState: { errors },
+  } = useForm<UserInformationUpdateSchema>({
+    resolver: zodResolver(userInformationUpdateSchema),
+    mode: 'all',
+    defaultValues: {
+      firstName: data?.[0].firstName,
+      lastName: data?.[0].lastName,
+      email: data?.[0].email,
+    },
+  })
+
+  //watch values to update redux state
+  const [firstName, lastName, email] = watch(['firstName', 'lastName', 'email'])
+
+  const onSubmit = async (data: UserInformationUpdateSchema) => {
+    try {
+      await updateUserInformation(data)
+      toast.success('Profile updated successfully')
+    } catch (error: any) {
+      toast.error(error?.message ?? 'Something went wrong')
+    } finally {
+    }
+  }
+
+  useEffect(() => {
+    if (!isFetching && data && data.length > 0) {
+      reset(data?.[0])
+    }
+  }, [isFetching, data])
+
+  useEffect(() => {
+    dispatch(updateUserInfo({ key: 'firstName', value: firstName ?? '' }))
+  }, [firstName])
+
+  useEffect(() => {
+    dispatch(updateUserInfo({ key: 'lastName', value: lastName ?? '' }))
+  }, [lastName])
+
+  useEffect(() => {
+    dispatch(updateUserInfo({ key: 'email', value: email ?? '' }))
+  }, [email])
+
+  return {
+    onSubmit: handleSubmit(onSubmit),
+    register,
+    reset,
+    isLoading: isUpdatingProfile || isLoadingUserInfo,
+    errors,
   }
 }
