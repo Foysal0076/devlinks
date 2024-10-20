@@ -22,16 +22,21 @@ const ProfilePictureSection = () => {
   const imagePlaceholder = useCallback(
     (placeholderText: string) => (
       <div className='flex h-full w-full flex-col items-center justify-center gap-1 text-primary-500 dark:text-primary-50'>
-        <ImageIcon size={48} weight='regular' />
-        <span className='font-bold text-inherit'>+ {placeholderText}</span>
+        <ImageIcon
+          className='h-12 w-12 max-sm:h-8 max-sm:w-8'
+          weight='regular'
+        />
+        <span className='text-center font-bold text-inherit max-sm:text-xs'>
+          + {placeholderText}
+        </span>
       </div>
     ),
     []
   )
 
   return (
-    <div className='flex flex-col items-center justify-between rounded-xl bg-neutral-10 p-5 dark:bg-surface-100/20 md:flex-row'>
-      <span className='w-full text-center text-base font-medium @2xl/profile-picture:text-left @2xl/profile-picture:text-lg'>
+    <div className='mx-5 flex flex-col items-center justify-between rounded-xl bg-neutral-10 p-5 dark:bg-surface-100/20 md:mx-6 md:flex-row'>
+      <span className='w-full text-center text-base font-medium @2xl/profile-picture:text-left @2xl/profile-picture:text-lg max-md:hidden'>
         Profile Picture
       </span>
       <div className='flex w-full flex-col items-center gap-2 @3xl/profile-picture:flex-row'>
@@ -43,7 +48,7 @@ const ProfilePictureSection = () => {
             onChange={handleImageChange}
             disabled={loading}
           />
-          <div className='flex h-[12rem] w-[12rem] items-center justify-center overflow-hidden rounded-full bg-primary-50 dark:bg-primary-200/10'>
+          <div className='flex h-[6rem] w-[6rem] items-center justify-center overflow-hidden rounded-full bg-primary-50 @lg/profile-picture:h-[12rem] @lg/profile-picture:w-[12rem] dark:bg-primary-200/10'>
             {loading && loader}
             {!loading && avatar && (
               <>
@@ -62,7 +67,7 @@ const ProfilePictureSection = () => {
             {!loading && !avatar && imagePlaceholder('Upload Picture')}
           </div>
         </label>
-        <span className='text-center text-sm'>
+        <span className='text-center text-xs md:text-sm'>
           Image must be below 1024x1024px. <br /> Use PNG, JPG, or BMP format.
         </span>
       </div>
