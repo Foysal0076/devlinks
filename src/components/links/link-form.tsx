@@ -1,75 +1,41 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { SubmitHandler } from 'react-hook-form'
-import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
 
-import LinksInputArray from '@/components/links/link-input-fields-array'
+import LinksInputFieldsArrayDraggable from '@/components/links/links-input-fields-array-draggable'
+import { useLinkForm } from '@/components/links/use-link-form'
 import Button from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
-import {
-  useCreateLinksMutation,
-  useFetchUserLinksQuery,
-  useUpdateLinksMutation,
-} from '@/redux/queries/link.queries'
-import { updateUserInfo } from '@/redux/slice/user-links-slice'
 import {
   linksSchema,
   PlatFormInput,
 } from '@/shared/validators/platform-link.schema'
-import { PutLinksBody } from '@/types'
 
 const LinkForm = () => {
-  const [reset, setReset] = useState<PutLinksBody>({ links: [], id: '' })
-  const dispatch = useDispatch()
-
-  const [createLinks, { isLoading, isError, isSuccess }] =
-    useCreateLinksMutation()
-
-  const [updateLinks, { isLoading: isUpdating, isError: isUpdateError }] =
-    useUpdateLinksMutation()
-
-  const onSubmit: SubmitHandler<PlatFormInput> = async (data) => {
-    try {
-      if (reset?.id) {
-        await updateLinks({ id: reset.id, links: data.links })
-        toast.success('Links updated successfully')
-        return
-      }
-      await createLinks({ links: data.links })
-      toast.success('Links created successfully')
-    } catch (error) {
-      toast.error('An error occurred')
-    }
-  }
-
-  const {
-    data,
-    isLoading: isFetching,
-    isSuccess: isLinksFetched,
-  } = useFetchUserLinksQuery(null)
-
-  useEffect(() => {
-    if (isLinksFetched && !isFetching && data) {
-      setReset({ links: data?.links, id: data?.id })
-      dispatch(updateUserInfo({ key: 'links', value: data?.links }))
-    }
-  }, [data, isFetching, isLinksFetched])
+  const { onSubmit, isLoading, isUpdating, resetValues } = useLinkForm()
 
   return (
     <Form<PlatFormInput>
       validationSchema={linksSchema}
-      resetValues={reset}
+      resetValues={resetValues}
       onSubmit={onSubmit}
+      useFormProps={{
+        mode: 'onChange',
+      }}
       className='flex h-full max-h-[70vh] min-h-[70vh] flex-col overflow-y-auto'>
-      {({ register, control, formState: { errors } }) => (
+      {({ register, control, setValue, formState: { errors } }) => (
         <>
           <div className='flex grow'>
             <div className='flex w-full flex-col justify-between gap-6'>
-              <LinksInputArray
+              {/* <LinksInputArray
                 control={control}
                 errors={errors}
                 register={register}
+              /> */}
+              <LinksInputFieldsArrayDraggable
+                control={control}
+                errors={errors}
+                register={register}
+                setValue={setValue}
+                resetValues={resetValues}
               />
               <div className='sticky bottom-0 flex rounded-bl-xl rounded-br-xl bg-neutral-0 p-5 dark:bg-surface-100 md:p-6'>
                 <Button

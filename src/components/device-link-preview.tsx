@@ -20,7 +20,6 @@ const DeviceLinkPreview = () => {
 
   useEffect(() => {
     if (data && !isFetching && isSuccess) {
-      console.log(data)
       const userInfo = data[0]
       dispatch(setUserInfo({ ...userInfo }))
     }

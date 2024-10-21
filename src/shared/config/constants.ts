@@ -42,3 +42,15 @@ export const PLATFORMS = [
     textColor: '#ffffff',
   },
 ]
+
+export const PLATFORM_URL_REGEX = {
+  Github: /github\.com/i,
+  LinkedIn: /linkedin\.com/i,
+  YouTube: /youtube\.com/i,
+  Facebook: /(facebook\.com|fb\.com)/i,
+  GitLab: /gitlab\.com/i,
+  X: /(x\.com|twitter\.com)/i,
+} as const
+
+//export the regex keys as types
+export type PlatformName = keyof typeof PLATFORM_URL_REGEX
