@@ -14,6 +14,7 @@ const DynamicIcon = ({ iconFile, iconName, ...rest }: Props) => {
     () => import(`./${iconFile}`).then((mod) => mod[_iconName]),
     {
       ssr: false,
+      loading: () => <div className='h-5 w-5 rounded-md bg-neutral-50/80' />,
     }
   )
 

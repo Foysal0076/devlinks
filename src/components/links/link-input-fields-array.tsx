@@ -2,6 +2,7 @@
 import { Link as LinkIcon, Plus } from '@phosphor-icons/react'
 import { useEffect } from 'react'
 import { Controller, useFieldArray, useWatch } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 
 import {
@@ -72,6 +73,12 @@ const LinksInputArray = ({
   const dispatch = useDispatch()
 
   const addLink = () => {
+    //prevent adding more than the length of platformOptions
+    if (fields.length >= platformOptions.length)
+      return toast.error('You have reached the maximum number of links', {
+        id: 'max-links',
+      })
+
     append({ name: 'Github', url: '' })
   }
 
