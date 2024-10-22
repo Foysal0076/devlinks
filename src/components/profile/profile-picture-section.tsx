@@ -5,6 +5,7 @@ import React, { useCallback, useMemo } from 'react'
 
 import { useProfilePicture } from '@/components/profile/use-profile'
 import Spinner from '@/components/ui/spinner'
+import { cn } from '@/shared/utils'
 
 const ProfilePictureSection = () => {
   const { avatar, handleImageChange, isUpdatingProfile } = useProfilePicture()
@@ -21,7 +22,16 @@ const ProfilePictureSection = () => {
 
   const imagePlaceholder = useCallback(
     (placeholderText: string) => (
-      <div className='flex h-full w-full flex-col items-center justify-center gap-1 text-primary-500 dark:text-primary-50'>
+      <div
+        className={cn(
+          'flex h-full w-full flex-col items-center justify-center gap-1',
+          {
+            'text-primary-500 group-hover:text-primary-600':
+              placeholderText === 'Upload Picture',
+            'text-neutral-0 dark:text-neutral-900':
+              placeholderText === 'Change Picture',
+          }
+        )}>
         <ImageIcon
           className='h-12 w-12 max-sm:h-8 max-sm:w-8'
           weight='regular'
@@ -59,7 +69,7 @@ const ProfilePictureSection = () => {
                   height={192}
                   width={192}
                 />
-                <div className='absolute inset-0 rounded-full bg-black/80 opacity-0 transition-opacity group-hover:opacity-100'>
+                <div className='absolute inset-0 rounded-full bg-neutral-600/70 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 dark:bg-surface-100/60'>
                   {imagePlaceholder('Change Picture')}
                 </div>
               </>

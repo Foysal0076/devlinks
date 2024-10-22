@@ -1,10 +1,6 @@
 import { apiSlice } from '@/redux/slice/apiSlice'
 import { apiRoutes } from '@/shared/config/api-routes'
-import {
-  PostLinksBody,
-  PutLinksBody,
-  UserInfoAndLinks,
-} from '@/types'
+import { PostLinksBody, PutLinksBody, UserInfoAndLinks } from '@/types'
 
 export const linksQueries = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

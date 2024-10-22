@@ -4,16 +4,19 @@ import { RootState } from '@/redux/store'
 import { Link } from '@/types'
 
 type UserBasicInfo = {
+  id: string
   firstName: string
   lastName: string
   email: string
   avatar: string
 }
+
 type State = UserBasicInfo & {
   links: Link[]
 }
 
 const initialState: State = {
+  id: '',
   firstName: '',
   lastName: '',
   email: '',
@@ -25,7 +28,7 @@ const userLinksSlice = createSlice({
   name: 'userLinks',
   initialState,
   reducers: {
-    updateUserInfo: (
+    updateUserInfoAndLinks: (
       state,
       action: PayloadAction<{ key: keyof State; value: string | Link[] }>
     ) => {
@@ -38,13 +41,15 @@ const userLinksSlice = createSlice({
         }
       }
     },
-    setUserInfo: (state, action: PayloadAction<UserBasicInfo>) => {
+    setUserInfoAndLinks: (state, action: PayloadAction<State>) => {
       return { ...state, ...action.payload }
     },
   },
 })
 
-export const getUserLinksFromRedux = (state: RootState) => state.userLinks
+export const getUserInfoAndLinksFromRedux = (state: RootState) =>
+  state.userLinks
 
-export const { setUserInfo, updateUserInfo } = userLinksSlice.actions
+export const { setUserInfoAndLinks, updateUserInfoAndLinks } =
+  userLinksSlice.actions
 export default userLinksSlice.reducer

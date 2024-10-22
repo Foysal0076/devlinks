@@ -10,7 +10,7 @@ import {
   useFetchUserInformationQuery,
   useUpdateUserProfileMutation,
 } from '@/redux/queries/user.queries'
-import { updateUserInfo } from '@/redux/slice/user-links-slice'
+import { updateUserInfoAndLinks } from '@/redux/slice/user-links-slice'
 import { apiRoutes } from '@/shared/config/api-routes'
 import {
   UserInformationUpdateSchema,
@@ -164,15 +164,17 @@ export const useProfileEditForm = () => {
   }, [isFetching, data])
 
   useEffect(() => {
-    dispatch(updateUserInfo({ key: 'firstName', value: firstName ?? '' }))
+    dispatch(
+      updateUserInfoAndLinks({ key: 'firstName', value: firstName ?? '' })
+    )
   }, [firstName])
 
   useEffect(() => {
-    dispatch(updateUserInfo({ key: 'lastName', value: lastName ?? '' }))
+    dispatch(updateUserInfoAndLinks({ key: 'lastName', value: lastName ?? '' }))
   }, [lastName])
 
   useEffect(() => {
-    dispatch(updateUserInfo({ key: 'email', value: email ?? '' }))
+    dispatch(updateUserInfoAndLinks({ key: 'email', value: email ?? '' }))
   }, [email])
 
   return {

@@ -6,24 +6,29 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import UserInfoAndLinksLoader from '@/components/loaders/user-info-and-links-loader'
 import UserInfoAndLinks from '@/components/user-info-and-links'
-import { useFetchUserInformationQuery } from '@/redux/queries/user.queries'
+import { useFetchUserLinksQuery } from '@/redux/queries/link.queries'
 import {
-  getUserLinksFromRedux,
-  setUserInfo,
+  getUserInfoAndLinksFromRedux,
+  setUserInfoAndLinks,
 } from '@/redux/slice/user-links-slice'
+import { useLoading } from '@/shared/hooks/use-loading'
 
 const DeviceLinkPreview = () => {
   const dispatch = useDispatch()
-  const userInfoAndLinks = useSelector(getUserLinksFromRedux)
-  const { data, isFetching, isLoading, isSuccess } =
-    useFetchUserInformationQuery(null)
+  const userInfoAndLinks = useSelector(getUserInfoAndLinksFromRedux)
+  const { isLoadingUserInfoAndLinks } = useLoading()
 
-  const fullName = `${userInfoAndLinks?.firstName} ${userInfoAndLinks?.lastName}`
+  const { data, isFetching, isSuccess } = useFetchUserLinksQuery(null)
 
   useEffect(() => {
     if (data && !isFetching && isSuccess) {
-      const userInfo = data[0]
-      dispatch(setUserInfo({ ...userInfo }))
+      dispatch(
+        setUserInfoAndLinks({
+          ...data,
+          lastName: data.lastName ?? '',
+          avatar: data.avatar ?? '',
+        })
+      )
     }
   }, [isFetching, isSuccess])
 
@@ -43,7 +48,7 @@ const DeviceLinkPreview = () => {
           className='hidden object-contain dark:block'
         />
         <div className='absolute inset-0 flex items-center justify-center'>
-          {isLoading ? (
+          {isLoadingUserInfoAndLinks ? (
             <UserInfoAndLinksLoader />
           ) : (
             <UserInfoAndLinks userInfoAndLinks={userInfoAndLinks} />

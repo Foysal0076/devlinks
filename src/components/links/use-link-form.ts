@@ -16,7 +16,7 @@ import {
   useFetchUserLinksQuery,
   useUpdateLinksMutation,
 } from '@/redux/queries/link.queries'
-import { updateUserInfo } from '@/redux/slice/user-links-slice'
+import { updateUserInfoAndLinks } from '@/redux/slice/user-links-slice'
 import { isValidUrl } from '@/shared/utils'
 import { PlatFormInput } from '@/shared/validators/platform-link.schema'
 import { Link, PutLinksBody } from '@/types/link.types'
@@ -67,7 +67,7 @@ export const useLinkFieldsArray = (
   }
 
   useEffect(() => {
-    dispatch(updateUserInfo({ key: 'links', value: links }))
+    dispatch(updateUserInfoAndLinks({ key: 'links', value: links }))
   }, [links, dispatch])
 
   return { fields, addLink, removeLink, updateLinksOrder, onDragEnd }
@@ -106,7 +106,7 @@ export const useLinkForm = () => {
   useEffect(() => {
     if (isLinksFetched && !isFetching && data) {
       setReset({ links: data?.links, id: data?.id })
-      dispatch(updateUserInfo({ key: 'links', value: data?.links }))
+      dispatch(updateUserInfoAndLinks({ key: 'links', value: data?.links }))
     }
   }, [data, isFetching, isLinksFetched])
 

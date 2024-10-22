@@ -16,7 +16,7 @@ import {
 import Button from '@/components/ui/button'
 import { Input } from '@/components/ui/Input'
 import Select from '@/components/ui/select'
-import { updateUserInfo } from '@/redux/slice/user-links-slice'
+import { updateUserInfoAndLinks } from '@/redux/slice/user-links-slice'
 import { Link, PlatformOptionType } from '@/types/link.types'
 
 const platformOptions: PlatformOptionType[] = [
@@ -87,7 +87,7 @@ const LinksInputArray = ({
   }
 
   useEffect(() => {
-    dispatch(updateUserInfo({ key: 'links', value: links }))
+    dispatch(updateUserInfoAndLinks({ key: 'links', value: links }))
   }, [links, dispatch])
 
   return (

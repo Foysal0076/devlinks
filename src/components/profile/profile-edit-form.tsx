@@ -3,9 +3,11 @@
 import { useProfileEditForm } from '@/components/profile/use-profile'
 import Button from '@/components/ui/button'
 import { Input } from '@/components/ui/Input'
+import { useLoading } from '@/shared/hooks/use-loading'
 
 const ProfileEditForm = () => {
   const { errors, onSubmit, register, isLoading } = useProfileEditForm()
+  const { isLoadingUserInfoAndLinks } = useLoading()
 
   return (
     <form
@@ -53,9 +55,13 @@ const ProfileEditForm = () => {
         </div>
       </div>
       <div className='sticky bottom-0 flex border-t-2 border-dashed border-neutral-20 p-5 dark:border-surface-100/20 md:p-6'>
-        <Button type='submit' loading={isLoading} className='ml-auto'>
-          Save
-        </Button>
+        {isLoadingUserInfoAndLinks ? (
+          <div className='bg-loader ml-auto h-10 w-24 animate-pulse rounded' />
+        ) : (
+          <Button type='submit' loading={isLoading} className='ml-auto'>
+            Save
+          </Button>
+        )}
       </div>
     </form>
   )
