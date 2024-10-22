@@ -44,8 +44,12 @@ export const useLinkFieldsArray = (
     append({ name: 'Github', url: '' })
   }
 
-  const removeLink = (index: number) => {
+  const removeLink = async (index: number) => {
+    const newLinks = links.filter((_, i) => i !== index)
+    if (resetValues?.id)
+      await updateLinks({ id: resetValues.id, links: newLinks })
     remove(index)
+    toast.success('Link removed successfully')
   }
 
   const updateLinksOrder = async (links: Link[]) => {
@@ -70,7 +74,13 @@ export const useLinkFieldsArray = (
     dispatch(updateUserInfoAndLinks({ key: 'links', value: links }))
   }, [links, dispatch])
 
-  return { fields, addLink, removeLink, updateLinksOrder, onDragEnd }
+  return {
+    fields,
+    addLink,
+    removeLink,
+    updateLinksOrder,
+    onDragEnd,
+  }
 }
 
 export const useLinkForm = () => {

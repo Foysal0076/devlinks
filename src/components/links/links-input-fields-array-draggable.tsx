@@ -1,12 +1,6 @@
 'use client'
-import {
-  DragDropContext,
-  Draggable,
-  Droppable,
-} from '@hello-pangea/dnd'
-import {
-  Plus,
-} from '@phosphor-icons/react'
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd'
+import { Plus } from '@phosphor-icons/react'
 import {
   Control,
   FieldErrors,
@@ -15,9 +9,7 @@ import {
 } from 'react-hook-form'
 
 import LinkInputFieldsItem from '@/components/links/link-form-item'
-import {
-  useLinkFieldsArray,
-} from '@/components/links/use-link-form'
+import { useLinkFieldsArray } from '@/components/links/use-link-form'
 import Button from '@/components/ui/button'
 import { PlatFormInput } from '@/shared/validators/platform-link.schema'
 import { PutLinksBody } from '@/types/link.types'
@@ -42,7 +34,7 @@ const LinksInputFieldsArrayDraggable = ({
     setValue,
     resetValues
   )
-  console.log(errors)
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='links-droppable'>
