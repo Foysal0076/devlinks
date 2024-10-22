@@ -21,7 +21,7 @@ export const userQueries = apiSlice.injectEndpoints({
         method: 'PUT',
         body,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User', 'Links'],
     }),
   }),
 })
