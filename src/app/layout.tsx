@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from '@/components/auth/auth-provider'
 import NextThemeProvider from '@/components/next-theme-provider'
 import { ReduxProvider } from '@/redux/redux-provider'
+import { metaObject } from '@/shared/config/site.config'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,11 +19,7 @@ const rubik = Rubik({
   display: 'swap',
 })
 
-export const metadata = {
-  title: 'devlinks',
-  description:
-    'Link sharing platform for developers. Share your favorite links and discover new ones.',
-}
+export const metadata = metaObject()
 
 export default function RootLayout({
   children,

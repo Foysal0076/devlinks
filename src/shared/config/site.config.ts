@@ -13,15 +13,19 @@ export const metaObject = (
   description: string = siteConfig.description
 ): Metadata => {
   return {
+    metadataBase: new URL(process.env.SITE_URL!),
+    alternates: {
+      canonical: '/',
+    },
     title: title ? `${title} - devlinks` : siteConfig.title,
     description,
     openGraph: openGraph ?? {
       title: title ? `${title} - devlinks` : siteConfig.title,
       description,
-      url: 'http://localhost:3000',
+      url: process.env.SITE_URL!,
       siteName: 'devlinks',
       images: {
-        url: 'http://localhost:3000/assets/og-image.png',
+        url: '/assets/images/og-devlinks.png',
         width: 1200,
         height: 630,
       },
