@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders UserInfoAndLinksLoader correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex h-full w-full flex-col items-center justify-center"
+  >
+    <div
+      class="bg-loader mb-4 h-20 w-20 animate-pulse rounded-full"
+    />
+    <div
+      class="bg-loader mb-4 h-7 w-4/6 animate-pulse rounded"
+    />
+    <div
+      class="bg-loader h-5 w-1/2 animate-pulse rounded"
+    />
+    <div
+      class="mt-4 flex w-full flex-col gap-2 px-8"
+    >
+      <div
+        class="bg-loader h-9 w-full animate-pulse rounded @lg:h-12"
+      />
+      <div
+        class="bg-loader h-9 w-full animate-pulse rounded @lg:h-12"
+      />
+      <div
+        class="bg-loader h-9 w-full animate-pulse rounded @lg:h-12"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

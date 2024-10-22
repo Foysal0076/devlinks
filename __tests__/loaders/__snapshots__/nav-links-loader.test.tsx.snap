@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders NavlinksLoader correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex items-center gap-2"
+  >
+    <div
+      class="bg-loader h-10 w-[3.125rem] animate-pulse rounded-md md:h-11 md:w-[6rem]"
+    />
+    <div
+      class="bg-loader h-10 w-[3.125rem] animate-pulse rounded-md md:h-11 md:w-[6rem]"
+    />
+    <div
+      class="bg-loader h-10 w-[3.125rem] animate-pulse rounded-md md:h-11 md:w-[6rem]"
+    />
+  </div>
+</DocumentFragment>
+`;

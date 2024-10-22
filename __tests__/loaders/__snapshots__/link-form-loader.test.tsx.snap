@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders LinkFormLoader correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex h-full max-h-[70vh] flex-col gap-6 overflow-y-auto"
+  >
+    <div
+      class="w-full p-5 md:p-6"
+    >
+      <div
+        class="bg-loader h-10 w-full animate-pulse rounded"
+      />
+    </div>
+    <div
+      class="w-full px-5 md:px-6"
+    >
+      <div
+        class="flex flex-col rounded-lg bg-neutral-10 p-5 pb-6 dark:bg-surface-200/40"
+      >
+        <div
+          class="mb-4 flex items-center justify-between"
+        >
+          <div
+            class="flex items-center"
+          >
+            <div
+              class="bg-loader h-6 w-6 animate-pulse rounded"
+            />
+            <div
+              class="bg-loader ml-2 h-6 w-24 animate-pulse rounded"
+            />
+          </div>
+          <div
+            class="bg-loader mb-1.5 h-4 w-20 animate-pulse rounded"
+          />
+        </div>
+        <div
+          class="flex flex-col gap-8"
+        >
+          <div
+            class="bg-loader h-10 w-full animate-pulse rounded"
+          />
+          <div
+            class="bg-loader h-10 w-full animate-pulse rounded"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full px-5 md:px-6"
+    >
+      <div
+        class="flex flex-col rounded-lg bg-neutral-10 p-5 pb-6 dark:bg-surface-200/40"
+      >
+        <div
+          class="mb-4 flex items-center justify-between"
+        >
+          <div
+            class="flex items-center"
+          >
+            <div
+              class="bg-loader h-6 w-6 animate-pulse rounded"
+            />
+            <div
+              class="bg-loader ml-2 h-6 w-24 animate-pulse rounded"
+            />
+          </div>
+          <div
+            class="bg-loader mb-1.5 h-4 w-20 animate-pulse rounded"
+          />
+        </div>
+        <div
+          class="flex flex-col gap-8"
+        >
+          <div
+            class="bg-loader h-10 w-full animate-pulse rounded"
+          />
+          <div
+            class="bg-loader h-10 w-full animate-pulse rounded"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex w-full p-5 md:p-6"
+    >
+      <div
+        class="bg-loader ml-auto h-10 w-24 animate-pulse rounded"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
