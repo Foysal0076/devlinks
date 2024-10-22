@@ -12,9 +12,9 @@ const ProfileAuthHeader = async () => {
     return null
   }
   return (
-    <header className='flex items-center justify-between rounded-xl bg-neutral-0 p-4 dark:bg-surface-100'>
+    <header className='flex items-center justify-between gap-2 rounded-xl bg-neutral-0 p-4 dark:bg-surface-100'>
       <Link href={routes.links}>
-        <Button variant='secondary' className='max-sm:text-sm'>
+        <Button variant='secondary' className='max-sm:!px-4 max-sm:text-sm'>
           Back to Editor
         </Button>
       </Link>

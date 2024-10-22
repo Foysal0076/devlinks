@@ -12,10 +12,10 @@ const PublicProfile = ({
 
   return (
     <div className='pb-12'>
-      <div className='h-auto bg-transparent p-5 md:h-[22rem] md:rounded-b-3xl md:bg-primary-500 lg:py-10'>
+      <div className='h-auto bg-transparent p-5 sm:h-[15rem] sm:rounded-b-2xl sm:bg-primary-500 md:h-[22rem] md:rounded-b-3xl lg:py-10'>
         <ProfileAuthHeader />
       </div>
-      <div className='mx-5 w-auto rounded-3xl border border-neutral-30 bg-neutral-0 py-8 shadow-sm @container/device-mock dark:bg-surface-100 sm:max-w-[22rem] md:mx-auto md:-mt-40 md:py-10'>
+      <div className='mx-5 rounded-3xl border border-neutral-30 bg-neutral-0 py-8 shadow-sm @container/device-mock dark:bg-surface-100 sm:mx-auto sm:-mt-20 sm:max-w-[22rem] md:mx-auto md:-mt-40 md:py-10'>
         <div className='w-full px-6 xl:px-9'>
           <div className='mb-6 flex flex-col items-center justify-center gap-1 md:mb-10 lg:gap-4'>
             <Avatar

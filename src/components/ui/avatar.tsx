@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { cn,createInitial } from '@/shared/utils'
+import { cn, createInitial } from '@/shared/utils'
 
 type Props = {
   name: string
@@ -25,6 +25,9 @@ const Avatar = ({ name, url, className, textClassName }: Props) => {
           alt={name}
           fill
           className='rounded-full object-cover'
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          placeholder='blur'
+          blurDataURL={`_next/image?url=${url}&w=16&q=1`}
         />
       ) : (
         <span className={cn('text-sm font-bold md:text-base', textClassName)}>

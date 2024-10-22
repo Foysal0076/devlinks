@@ -74,7 +74,7 @@ export const Input = forwardRef<HTMLInputElement, TextFieldParams>(
                   !error,
                 'ring-red-500 focus:ring-red-500': error,
                 'pr-12': endAdornment,
-                'pl-10': startAdornment,
+                'pl-10 max-xs:max-w-[13.5rem]': startAdornment,
               },
               className
             )}

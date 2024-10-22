@@ -9,7 +9,7 @@ export const Navbar = async () => {
   return (
     <header className='fixed top-0 z-40 flex h-[3.75rem] w-full items-center border-b border-surface-100/70 bg-neutral-0 backdrop-blur-3xl dark:bg-surface-100/70 md:sticky md:h-[4.5rem] md:w-auto md:rounded-xl lg:m-6'>
       <nav
-        className='flex w-full items-center justify-between px-4 md:px-8'
+        className='flex w-full max-w-full items-center justify-between px-4 md:px-8'
         aria-label='Main navigation'>
         <div className='min-h-8 min-w-8'>
           <Link
@@ -28,9 +28,7 @@ export const Navbar = async () => {
           </Link>
         </div>
         <NavLinks />
-        <div className='flex gap-4'>
-          <NavbarAuthMenu />
-        </div>
+        <NavbarAuthMenu />
       </nav>
     </header>
   )

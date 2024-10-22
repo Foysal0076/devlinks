@@ -12,7 +12,7 @@ const ShareLinkButton = () => {
     toast.success('Link copied to clipboard')
   }
   return (
-    <Button onClick={onClick} className='max-sm:text-sm'>
+    <Button onClick={onClick} className='max-sm:!px-4 max-sm:text-sm'>
       Share Link
     </Button>
   )
