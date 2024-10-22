@@ -1,10 +1,10 @@
 import { FormPageLayout } from '@/components/form-page-layout'
-import LinksFormSection from '@/components/links/links-form-section'
+import LinksForm from '@/components/links/links-form'
 
 export const Links = () => {
   return (
     <FormPageLayout>
-      <LinksFormSection />
+      <LinksForm />
     </FormPageLayout>
   )
 }

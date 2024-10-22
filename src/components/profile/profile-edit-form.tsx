@@ -14,7 +14,7 @@ const ProfileEditForm = () => {
       noValidate
       onSubmit={onSubmit}
       className='flex grow flex-col justify-between'>
-      <div className='mx-5 flex flex-col gap-5 rounded-xl bg-neutral-10 p-5 dark:bg-surface-100/20 md:mx-6 md:gap-6'>
+      <div className='mx-5 mb-10 flex flex-col gap-5 rounded-xl bg-neutral-20 p-5 dark:bg-surface-200/40 md:mx-6 md:gap-6'>
         <div className='@lg/profile-picture:flex @lg/profile-picture:items-center'>
           <label
             htmlFor='firstName'
@@ -59,7 +59,10 @@ const ProfileEditForm = () => {
         {isLoadingUserInfoAndLinks ? (
           <div className='bg-loader ml-auto h-10 w-24 animate-pulse rounded' />
         ) : (
-          <Button type='submit' loading={isLoading} className='ml-auto'>
+          <Button
+            type='submit'
+            loading={isLoading}
+            className='max-sm:w-full md:ml-auto'>
             Save
           </Button>
         )}

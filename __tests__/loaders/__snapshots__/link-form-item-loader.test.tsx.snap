@@ -23,14 +23,24 @@ exports[`renders LinkFormItemLoader correctly 1`] = `
       />
     </div>
     <div
-      class="flex flex-col gap-8"
+      class="flex flex-col gap-6 md:gap-8"
     >
-      <div
-        class="bg-loader h-10 w-full animate-pulse rounded"
-      />
-      <div
-        class="bg-loader h-10 w-full animate-pulse rounded"
-      />
+      <div>
+        <div
+          class="bg-loader mb-1.5 h-4 w-14 animate-pulse rounded"
+        />
+        <div
+          class="bg-loader h-10 w-full animate-pulse rounded"
+        />
+      </div>
+      <div>
+        <div
+          class="bg-loader mb-1.5 h-4 w-14 animate-pulse rounded"
+        />
+        <div
+          class="bg-loader h-10 w-full animate-pulse rounded"
+        />
+      </div>
     </div>
   </div>
 </DocumentFragment>

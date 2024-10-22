@@ -45,7 +45,7 @@ const ProfilePictureSection = () => {
   )
 
   return (
-    <div className='mx-5 flex flex-col items-center justify-between rounded-xl bg-neutral-10 p-5 dark:bg-surface-100/20 md:mx-6 md:flex-row'>
+    <div className='mx-5 flex flex-col items-center justify-between rounded-xl bg-neutral-20 p-5 dark:bg-surface-200/40 md:mx-6 md:flex-row'>
       <span className='w-full text-center text-base font-medium @2xl/profile-picture:text-left @2xl/profile-picture:text-lg max-md:hidden'>
         Profile Picture
       </span>

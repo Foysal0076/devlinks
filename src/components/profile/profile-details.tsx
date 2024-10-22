@@ -3,15 +3,14 @@ import ProfilePictureSection from '@/components/profile/profile-picture-section'
 
 const ProfileDetails = () => {
   return (
-    <div className='@container/profile-picture'>
-      <div className='p-5 md:p-6'>
-        <h1 className='h4 mb-2 font-bold'>Profile Details</h1>
-        <p className='text-sm md:text-base'>
-          Add your details to create a personal touch to your profile.
-        </p>
-      </div>
-
-      <div className='flex h-full max-h-[72vh] min-h-[72vh] flex-col gap-6 overflow-y-auto lg:max-h-[70vh] lg:min-h-[70vh] 2xl:max-h-[74vh] 2xl:min-h-[74vh]'>
+    <div className='h-[calc(100vh-5.75rem)] @container/profile-picture md:h-[calc(100vh-9rem)]'>
+      <div className='flex h-full flex-col gap-4 overflow-y-auto'>
+        <div className='px-5 pt-5 md:px-6 md:pt-6'>
+          <h1 className='h4 mb-2 font-bold'>Profile Details</h1>
+          <p className='text-sm md:text-base'>
+            Add your details to create a personal touch to your profile.
+          </p>
+        </div>
         <ProfilePictureSection />
         <ProfileEditForm />
       </div>
