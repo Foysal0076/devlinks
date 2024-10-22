@@ -46,10 +46,11 @@ export const useLinkFieldsArray = (
 
   const removeLink = async (index: number) => {
     const newLinks = links.filter((_, i) => i !== index)
-    if (resetValues?.id)
+    if (resetValues?.id) {
       await updateLinks({ id: resetValues.id, links: newLinks })
+      toast.success('Link removed successfully')
+    }
     remove(index)
-    toast.success('Link removed successfully')
   }
 
   const updateLinksOrder = async (links: Link[]) => {

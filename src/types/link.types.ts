@@ -4,6 +4,7 @@ export type PlatformOptionType = {
   value: string
   label: string
   icon: React.ReactNode
+  placeholder?: string
 }
 
 export type Link = {

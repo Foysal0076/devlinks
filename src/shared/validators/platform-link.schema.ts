@@ -15,7 +15,7 @@ export const platformSchema = z
     if (!isValidPlatformUrl(name as PlatformName, url)) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: `Invalid URL for ${name}`,
+        message: `Invalid URL for ${name} profile`,
         path: ['url'],
       })
     }
