@@ -12,6 +12,7 @@ import {
 } from '@/redux/queries/user.queries'
 import { updateUserInfoAndLinks } from '@/redux/slice/user-links-slice'
 import { apiRoutes } from '@/shared/config/api-routes'
+import isValidImage from '@/shared/utils/is-valid-image'
 import {
   UserInformationUpdateSchema,
   userInformationUpdateSchema,
@@ -38,31 +39,45 @@ export const useProfilePicture = () => {
   ) => {
     try {
       const file = event.target.files?.[0]
-      if (
-        file &&
-        (file.type === 'image/jpeg' ||
-          file.type === 'image/jpg' ||
-          file.type === 'image/png' ||
-          file.type === 'image/bmp')
-      ) {
-        setUploading(true)
-        const uploadLink = await uploadPicture(file)
-        if (uploadLink) {
-          await updateProfile({
-            avatar: uploadLink as unknown as string,
-          })
+      if (file) {
+        const isValidType = [
+          'image/jpeg',
+          'image/jpg',
+          'image/png',
+          'image/bmp',
+        ].includes(file.type)
+
+        if (!isValidType) {
+          toast.error(
+            'Invalid image format. Please upload .jpg, .jpeg, .png, or .bmp.'
+          )
+          return
         }
-        setSelectedImageFileUrl(URL.createObjectURL(file))
-        setUploading(false)
-      } else {
-        toast.error(
-          'Please upload a valid image file (JPEG, JPG, PNG, BMP) with a maximum size of 1024x1024.'
-        )
+
+        const invalidImageResult = await isValidImage({
+          file,
+          maxWidth: 4000,
+          maxHeight: 3000,
+          maxSize: 2,
+        })
+
+        if (invalidImageResult) {
+          toast.error(invalidImageResult.message)
+        } else if (isValidType) {
+          setUploading(true)
+          const uploadLink = await uploadPicture(file)
+          if (uploadLink) {
+            await updateProfile({
+              avatar: uploadLink as unknown as string,
+            })
+          }
+          setSelectedImageFileUrl(URL.createObjectURL(file))
+          setUploading(false)
+        }
       }
     } catch (error) {
       console.error(error)
       setSelectedImageFileUrl(null)
-    } finally {
       setUploading(false)
     }
   }

@@ -45,7 +45,7 @@ export default function RootLayout({
           <NextThemeProvider>
             <ReduxProvider>
               <>{children}</>
-              <Toaster position='bottom-center' reverseOrder={false} />
+              <Toaster position='top-center' reverseOrder={false} />
             </ReduxProvider>
           </NextThemeProvider>
         </AuthProvider>
