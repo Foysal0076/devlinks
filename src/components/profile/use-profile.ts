@@ -125,10 +125,8 @@ export const useProfileEditForm = () => {
     isLoading: isLoadingUserInfo,
   } = useFetchUserInformationQuery(null)
 
-  const [
-    updateUserInformation,
-    { isError: hasUpdateUserInformationError, isLoading: isUpdatingProfile },
-  ] = useUpdateUserProfileMutation()
+  const [updateUserInformation, { isLoading: isUpdatingProfile }] =
+    useUpdateUserProfileMutation()
 
   const {
     handleSubmit,

@@ -1,6 +1,4 @@
-import {
-  DraggableProvidedDragHandleProps,
-} from '@hello-pangea/dnd'
+import { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd'
 import { Equals } from '@phosphor-icons/react'
 import { Link as LinkIcon } from '@phosphor-icons/react'
 import {
@@ -88,6 +86,7 @@ const LinkInputFieldsItem = ({
             <span className='font-bold'>{`Link #${index + 1}`}</span>
           </div>
           <button
+            type='button'
             onClick={() => removeLink(index)}
             className='transition-colors duration-300 hover:text-red-500'>
             Remove

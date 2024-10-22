@@ -8,6 +8,7 @@ import { useTheme } from 'next-themes'
 import { ToggleDarkIcon } from '@/components/icons'
 import ThemeSwitcher from '@/components/theme-switcher'
 import Avatar from '@/components/ui/avatar'
+import { useFetchUserInformationQuery } from '@/redux/queries/user.queries'
 import { apiRoutes } from '@/shared/config/api-routes'
 import { routes } from '@/shared/config/routes'
 import { cn } from '@/shared/utils'
@@ -17,7 +18,13 @@ const NavbarAuthMenu = () => {
   const { data: session, status } = useSession()
 
   const isLogged = status === 'authenticated'
+  const isLoading = status === 'loading'
   const user = session?.user
+
+  const { isLoading: isLoadingUserInfo } = useFetchUserInformationQuery(null)
+
+  if (isLoading || isLoadingUserInfo)
+    return <div className='bg-loader h-10 w-10 animate-pulse rounded-full' />
 
   if (!isLogged) return <ThemeSwitcher />
 

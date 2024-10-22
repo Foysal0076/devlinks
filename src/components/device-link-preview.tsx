@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import UserInfoAndLinksLoader from '@/components/loaders/user-info-and-links-loader'
 import UserInfoAndLinks from '@/components/user-info-and-links'
 import { useFetchUserInformationQuery } from '@/redux/queries/user.queries'
 import {
@@ -14,7 +15,8 @@ import {
 const DeviceLinkPreview = () => {
   const dispatch = useDispatch()
   const userInfoAndLinks = useSelector(getUserLinksFromRedux)
-  const { data, isFetching, isSuccess } = useFetchUserInformationQuery(null)
+  const { data, isFetching, isLoading, isSuccess } =
+    useFetchUserInformationQuery(null)
 
   const fullName = `${userInfoAndLinks?.firstName} ${userInfoAndLinks?.lastName}`
 
@@ -41,7 +43,11 @@ const DeviceLinkPreview = () => {
           className='hidden object-contain dark:block'
         />
         <div className='absolute inset-0 flex items-center justify-center'>
-          <UserInfoAndLinks userInfoAndLinks={userInfoAndLinks} />
+          {isLoading ? (
+            <UserInfoAndLinksLoader />
+          ) : (
+            <UserInfoAndLinks userInfoAndLinks={userInfoAndLinks} />
+          )}
         </div>
       </div>
     </div>

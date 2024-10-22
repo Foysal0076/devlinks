@@ -1,5 +1,3 @@
-'use client'
-
 import dynamic from 'next/dynamic'
 import React from 'react'
 
@@ -13,7 +11,7 @@ const DynamicIcon = ({ iconFile, iconName, ...rest }: Props) => {
   const DynamicIcon = dynamic(
     () => import(`./${iconFile}`).then((mod) => mod[_iconName]),
     {
-      ssr: false,
+      ssr: true,
       loading: () => <div className='h-5 w-5 rounded-md bg-neutral-50/80' />,
     }
   )

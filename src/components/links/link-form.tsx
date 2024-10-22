@@ -2,8 +2,10 @@
 
 import LinksInputFieldsArrayDraggable from '@/components/links/links-input-fields-array-draggable'
 import { useLinkForm } from '@/components/links/use-link-form'
+import LinkFormLoader from '@/components/loaders/link-form-loader'
 import Button from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
+import { useLoading } from '@/shared/hooks/use-loading'
 import {
   linksSchema,
   PlatFormInput,
@@ -11,6 +13,8 @@ import {
 
 const LinkForm = () => {
   const { onSubmit, isLoading, isUpdating, resetValues } = useLinkForm()
+  const { isLoadingUserInfoAndLinks } = useLoading()
+  if (isLoadingUserInfoAndLinks) return <LinkFormLoader />
 
   return (
     <Form<PlatFormInput>

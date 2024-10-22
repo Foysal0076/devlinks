@@ -1,20 +1,25 @@
 'use client'
 import { Eye, Link as LinkIcon, UserCircle } from '@phosphor-icons/react'
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 
+import NavlinksLoader from '@/components/loaders/nav-links-loader'
 import { routes } from '@/shared/config/routes'
+import { useLoading } from '@/shared/hooks/use-loading'
 import { cn } from '@/shared/utils'
 
 const NavLinks = () => {
   const currentPath = usePathname()
   const { data, status } = useSession()
-  const { id } = useParams()
 
   const isLogged = status === 'authenticated'
   const isLoading = status === 'loading'
-  if (!isLogged || isLoading) return null
+  const { isLoadingUserInfoAndLinks } = useLoading()
+
+  if (isLoading || isLoadingUserInfoAndLinks) return <NavlinksLoader />
+
+  if (!isLogged) return null
 
   const previewLink = routes.previewProfile(data?.user?.id as unknown as string)
 
