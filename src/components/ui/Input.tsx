@@ -80,7 +80,7 @@ export const Input = forwardRef<HTMLInputElement, TextFieldParams>(
             )}
           />
           {helperText && (
-            <span className='helper-text text-xs font-normal text-neutral-400 md:text-sm'>
+            <span className='helper-text mt-1 text-xs font-normal text-neutral-400'>
               {helperText}
             </span>
           )}

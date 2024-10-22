@@ -48,13 +48,14 @@ const ProfileEditForm = () => {
           <div className='w-full @lg/profile-picture:w-2/3'>
             <Input
               id='email'
+              helperText='Note: This will not change your login email'
               {...register('email')}
               error={errors.email?.message}
             />
           </div>
         </div>
       </div>
-      <div className='sticky bottom-0 flex border-t-2 border-dashed border-neutral-20 p-5 dark:border-surface-100/20 md:p-6'>
+      <div className='sticky bottom-0 flex rounded-bl-xl rounded-br-xl bg-neutral-0 p-5 dark:bg-surface-100 md:p-6'>
         {isLoadingUserInfoAndLinks ? (
           <div className='bg-loader ml-auto h-10 w-24 animate-pulse rounded' />
         ) : (

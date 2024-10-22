@@ -10,7 +10,8 @@ const ProfileDetails = () => {
           Add your details to create a personal touch to your profile.
         </p>
       </div>
-      <div className='flex h-full max-h-[72vh] min-h-[72vh] flex-col gap-6 overflow-y-auto lg:max-h-[64vh] lg:min-h-[64vh] 2xl:max-h-[68vh] 2xl:min-h-[68vh]'>
+
+      <div className='flex h-full max-h-[72vh] min-h-[72vh] flex-col gap-6 overflow-y-auto lg:max-h-[70vh] lg:min-h-[70vh] 2xl:max-h-[74vh] 2xl:min-h-[74vh]'>
         <ProfilePictureSection />
         <ProfileEditForm />
       </div>
