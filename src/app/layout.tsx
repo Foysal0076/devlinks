@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 
+import { Analytics } from '@vercel/analytics/react'
 import { Inter, Rubik } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
@@ -38,6 +39,7 @@ export default function RootLayout({
         href='/assets/favicons/favicon.ico'
       />
       <body>
+        <Analytics />
         <AuthProvider>
           <NextThemeProvider>
             <ReduxProvider>
