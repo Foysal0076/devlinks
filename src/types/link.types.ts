@@ -23,6 +23,7 @@ export type UserInfoAndLinks = {
   avatar?: string
   email: string
   links: Link[]
+  userId?: string
 }
 
 // redux query data type

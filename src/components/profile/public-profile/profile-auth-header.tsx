@@ -6,9 +6,14 @@ import Button from '@/components/ui/button'
 import { authOptions } from '@/services/auth.service'
 import { routes } from '@/shared/config/routes'
 
-const ProfileAuthHeader = async () => {
+type Props = {
+  profileId?: string
+}
+const ProfileAuthHeader = async ({ profileId }: Props) => {
   const session = await getServerSession(authOptions)
-  if (!session || !session.user) {
+  const isMyProfile = profileId === session?.user?.id
+
+  if (!session || !session.user || !isMyProfile) {
     return null
   }
   return (

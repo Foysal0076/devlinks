@@ -122,11 +122,12 @@ export const getUserInfoAndLinks = async (
     const userInformationData = await getUserById(userId)
 
     const userInfo = userInformationData[0]
-    delete userInfo.id
+
     response = {
       ...userInfo,
       links: result.length ? JSON.parse(result[0].links) : [],
       id: result.length ? result[0].id : '',
+      userId,
     }
 
     return response

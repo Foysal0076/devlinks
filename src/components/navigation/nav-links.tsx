@@ -21,7 +21,8 @@ const NavLinks = () => {
 
   if (!isLogged) return null
 
-  const previewLink = routes.previewProfile(data?.user?.id as unknown as string)
+  const refresh = Math.random().toString(36).substring(2, 7)
+  const previewLink = `${routes.previewProfile(data?.user?.id as unknown as string)}?refresh=${refresh}`
 
   const isOnLinksPage = currentPath === routes.links
   const isOnProfileDetailsPage = currentPath === routes.profileDetails
