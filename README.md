@@ -5,6 +5,8 @@
 ### First fill up this .env.local variable
 
 ```bash
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET = 717c1eef4257ead95a34460b4e1a41e5
 SITE_URL=http://localhost:3000
 ```
 
