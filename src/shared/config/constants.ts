@@ -50,12 +50,12 @@ export const PLATFORMS = [
 ]
 
 export const PLATFORM_URL_REGEX = {
-  Github: /github\.com\/.+$/i,
-  LinkedIn: /linkedin\.com\/in\/.+$/i,
-  YouTube: /youtube\.com\/@.+$/i,
-  Facebook: /(facebook\.com|fb\.com)\/.+$/i,
-  GitLab: /gitlab\.com\/.+$/i,
-  X: /(x\.com|twitter\.com)\/.+$/i,
+  Github: /^(?:https?:\/\/)?(?:www\.)?github\.com\/[\w-]+\/?$/i,
+  LinkedIn: /^(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/[\w-]+\/?$/i,
+  YouTube: /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/@[\w-]{3,}\/?$/i,
+  Facebook: /^(?:https?:\/\/)?(?:www\.)?(facebook|fb)\.com\/[\w.]+\/?$/i,
+  GitLab: /^(?:https?:\/\/)?(?:www\.)?gitlab\.com\/[\w-]+\/?$/i,
+  X: /^(?:https?:\/\/)?(?:www\.)?(x|twitter)\.com\/[\w-]+\/?$/i,
 } as const
 
 //export the regex keys as types

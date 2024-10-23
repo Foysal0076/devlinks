@@ -78,7 +78,8 @@ const ProfilePictureSection = () => {
           </div>
         </label>
         <span className='text-center text-xs md:text-sm'>
-          Image must be below 4000x3000px. <br /> Use PNG, JPG, or BMP format.
+          Image must be below 4000x3000px (2MB). <br /> Use .png, .jpg, .jpeg,
+          or .bmp format.
         </span>
       </div>
     </div>

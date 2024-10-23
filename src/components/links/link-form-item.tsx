@@ -112,7 +112,6 @@ const LinkInputFieldsItem = ({
                 options={platformOptions}
                 value={value}
                 onChange={(selectedOption) => {
-                  console.log('ran')
                   setPlaceholder(
                     platformOptions.find(
                       (option) => option.value === selectedOption
